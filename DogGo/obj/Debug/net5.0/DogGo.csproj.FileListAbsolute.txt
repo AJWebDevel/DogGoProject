@@ -438,3 +438,4 @@ C:\Users\Abigayle Jones\workspace\DogGoSol\DogGo\obj\Debug\net5.0\Razor\Views\Do
 C:\Users\Abigayle Jones\workspace\DogGoSol\DogGo\obj\Debug\net5.0\Razor\Views\Dog\Create.cshtml.g.cs
 C:\Users\Abigayle Jones\workspace\DogGoSol\DogGo\obj\Debug\net5.0\Razor\Views\Dog\Edit.cshtml.g.cs
 C:\Users\Abigayle Jones\workspace\DogGoSol\DogGo\obj\Debug\net5.0\Razor\Views\Dog\Delete.cshtml.g.cs
+C:\Users\Abigayle Jones\workspace\DogGoSol\DogGo\obj\Debug\net5.0\Razor\Views\Owner\Login.cshtml.g.cs
