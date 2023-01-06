@@ -121,7 +121,9 @@ namespace DogGo.Controllers
             try
             {
                 Dog doggie = _dogRepo.GetDogById(id);
-                if(dog.OwnerId == GetCurrentUserId())
+               
+
+                if(doggie.OwnerId == GetCurrentUserId())
                 {
                  _dogRepo.DeleteDog(id);
                 }

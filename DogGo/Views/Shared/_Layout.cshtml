@@ -19,6 +19,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Walkers" asp-action="Index">Walkers</a>
                         </li>
+                               <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Owner" asp-action="Details">Profile</a>
+                        </li>
                         @if (User.IsInRole("DogOwner"))
                         {
                             <li class="nav-item">
@@ -36,6 +39,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Owner" asp-action="Login">Login</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Walkers" asp-action="Index">View Our Walkers!</a>
+                        </li>
+                             
                     }
                 </ul>
             </div>
@@ -54,7 +61,10 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  
+    <partial name="_ValidationScriptsPartial" />
+
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

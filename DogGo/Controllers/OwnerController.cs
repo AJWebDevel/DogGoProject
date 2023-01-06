@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace DogGo.Controllers
 {
@@ -42,7 +43,7 @@ namespace DogGo.Controllers
         // GET: Owners/Details/5
         public ActionResult Details(int id)
         {
-            Owner owner = _ownerRepo.GetOwnerById(id);
+            Owner owner = _ownerRepo.GetOwnerById(GetCurrentUserId());
             List<Dog> dogs = _dogRepo.GetDogsByOwnerId(owner.Id);
             List<Walker> walkers = _walkerRepo.GetWalkersInNeighborhood(owner.NeighborhoodId);
 
@@ -91,25 +92,34 @@ namespace DogGo.Controllers
         public ActionResult Edit(int id)
         {
             List<Neighborhood> neighborhoods = _neighborhoodRepo.GetAll();
-
+            Owner owner = _ownerRepo.GetOwnerById(GetCurrentUserId());
+            if (owner.Id == id)
+            {
             OwnerFormViewModel vm = new OwnerFormViewModel()
             {
-                Owner = new Owner(),
+                Owner = owner,
                 Neighborhoods = neighborhoods
             };
 
             return View(vm);
+            }
+            else
+            {
+                return NotFound();
+            }
+         
         }
 
         // POST: HomeController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Owner owner)
+        public ActionResult Edit(int id, Owner owner, OwnerFormViewModel model)
         {
             try
             {
+                owner.Id = id;
                 _ownerRepo.UpdateOwner(owner);
-
+                owner = model.Owner;
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -180,6 +190,12 @@ namespace DogGo.Controllers
         {
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        private int GetCurrentUserId()
+        {
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return int.Parse(id);
         }
     }
 }

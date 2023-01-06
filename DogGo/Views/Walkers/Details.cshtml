@@ -58,20 +58,20 @@
     
     <dl>
         Toatal Runtime:
-        @{
-            List<Walk>  walks = new List<Walk>();
-            foreach (Walk walk in Model.Walks)
-            {
-                if (walk.WalkerId == Model.Walker.Id)
+            @{
+                List<Walk>  walks = new List<Walk>();
+                foreach (Walk walk in Model.Walks)
                 {
-                    walks.Add(walk);
-                } 
-        }      
-        int runtime = walks.Sum(item => item.Duration);
-
-        }
+                    if (walk.WalkerId == Model.Walker.Id)
+                    {
+                        walks.Add(walk);
+                    } 
+                }      
+                int runtime = walks.Sum(item => item.Duration);
+              
+            }
         @runtime
-        minutes
+        seconds
 
 
     </dl>
